@@ -8,6 +8,11 @@ generator client {
   provider = "prisma-client-js"
 }
 
+enum UserRole {
+  USER
+  ADMIN
+}
+
 // Copied from here https://authjs.dev/getting-started/adapters/prisma
 model User {
   id            String          @id @default(cuid())
@@ -16,6 +21,7 @@ model User {
   emailVerified DateTime?
   image         String?
   password      String?
+  role          UserRole       @default(USER)
   accounts      Account[]
   // Optional for WebAuthn support
  // Authenticator Authenticator[]
